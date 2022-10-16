@@ -11,7 +11,7 @@ const Header = () => {
     <div className="Header">
       <h1 className="Header-title">
         <Link to="/">
-        Ramos Conf Merch
+        Rickie Usa Merch
         </Link>
         </h1>
       <div className="Header-checkout">
