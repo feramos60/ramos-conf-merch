@@ -8,7 +8,7 @@ const Checkout = () => {
   const { cart } = state;
 
   const handleRemove = product => () => {
-     removeFromCart(product);
+     removeFromCart(product.attributes);
   };
 
   const handleSumTotal = () => {
@@ -26,6 +26,7 @@ const Checkout = () => {
             <div className="Checkout-element">
               <h4>{item.title}</h4>
               <span>${item.price}</span>
+              <span>`${item.image.data[0].attributes.name} este es el id`</span>
             </div>
             <button type="button" onClick={ handleRemove(item) }><i className='fas fa-delete-left' /></button>
           </div>
