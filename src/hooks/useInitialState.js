@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import initialState from '../initialState';
 
-const API = 'http://localhost:1337/api/products?populate=%2A'
+const API = 'http://localhost:1337/api/products?populate=%2A';
+const API2 = 'https://fakestoreapi.com/products'
 
 const useInitialState = () => {
   const [state, setState] = useState(initialState);

@@ -36,35 +36,31 @@ Primero importamos copy-webpack-plugin en la parte superior del archivo
 
 Agregamos la configuración necesaria en la sección de plugins:
 
-````
-new CopyPlugin({
-      patterns: [
-        { from: 'public/manifest.json', to: '' },
-        { from: 'public/service-worker.js', to: '' },
-        { from: 'public/icon.png', to: 'assets' },
-      ],
-    }),
-```
+    new CopyPlugin({
+              patterns: [
+                { from: 'public/manifest.json', to: '' },
+                { from: 'public/service-worker.js', to: '' },
+                { from: 'public/icon.png', to: 'assets' },
+              ],
+            }),
 
 Una de las tareas que tenemos que realizar antes de probar nuestra aplicación es agregar el soporte del service worker al proyecto creando la lógica siguiente dentro de index.html.
 
-```
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('service-worker.js').then(function (registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function (err) {
-        console.log('ServiceWorker registration failed: ', err);
-      }).catch(function (err) {
-        console.log(err)
-      });
-    });
-  } else {
-    console.log('service worker is not supported');
-  }
-</script>
-``` 
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function (err) {
+            console.log('ServiceWorker registration failed: ', err);
+          }).catch(function (err) {
+            console.log(err)
+          });
+        });
+      } else {
+        console.log('service worker is not supported');
+      }
+    </script>
 
 Ahora demos de agregar la referencia al archivo manifest.json dentro de la etiqueta <head>:
 
@@ -79,5 +75,3 @@ Cuando termina el proceso podemos revisar la carpeta /dist que ha generado Webpa
 Ahora podemos correr el proyecto y comprobar que tenemos el registro del service worker y la información de nuestra aplicación:
 
 `npm run start`
-
-
