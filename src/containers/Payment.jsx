@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import AppContext from '../context/AppContext';
 import { sumTotal } from '../lib/sumTotal';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import '../styles/components/Payment.css';
 
@@ -14,7 +14,7 @@ const Payment = () => {
   const currency = 'USD';
 
   const paypalOtions = {
-    //'client-id': 'test',
+    // 'client-id': 'test',
     'client-id':
       'ATN4MgsCVKSXinkSTL1YqlANTikW5fXyo5C7TkyVUG7JB0DTr1G2aabkWFF9Uz6kKo61tL48cfWpomc4',
     intent: 'capture',
@@ -42,6 +42,7 @@ const Payment = () => {
 
   const handlePaymentSuccess = (data) => {
     console.log('Pesque la data:', data);
+    console.log('El comprador:', buyer);
     if (data.status === 'COMPLETED') {
       const newOrder = {
         buyer,
@@ -52,7 +53,7 @@ const Payment = () => {
       navigate('/checkout/success');
     }
   };
-  
+
   return (
     <div className="Payment">
       <div className="Payment-content">
@@ -72,7 +73,6 @@ const Payment = () => {
         )}
         <div className="Payment-button">
           <PayPalScriptProvider options={paypalOtions}>
-            
             <PayPalButtons
               style={buttonStyles}
               disabled={false}
@@ -99,8 +99,8 @@ const Payment = () => {
               onApprove={function (data, actions) {
                 return actions.order.capture().then(function (details) {
                   // Your code here after capture the order
-                  console.log('Pagada la orden')
-                  handlePaymentSuccess(details)
+                  console.log('Pagada la orden');
+                  handlePaymentSuccess(details);
                 });
               }}
               onCancel={(data) => {
@@ -110,9 +110,7 @@ const Payment = () => {
                 console.log('Hubo un error', err);
               }}
             />
-            
           </PayPalScriptProvider>
-          
         </div>
       </div>
       <div />
